@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 class Command{
     Scanner scan = new Scanner(System.in);
+    Board board = new Board();
     void selected(int operation, List<Rectangle> rectangle){
 	switch(operation){
 	case 1:
@@ -29,6 +30,7 @@ class Command{
 		       rect.getX() == x && rect.getY() == y){
 			System.out.println("その長方形はすでに存在しています");
 			fit = 1;
+			break;
 		    }else{
 			fit = 0;
 		    }
@@ -46,35 +48,11 @@ class Command{
 	    }
 	    break;
 	case 5:
-	    if(rectangle.isEmpty() == true){
-		System.out.println("長方形は作成されていません");
-	    }else{
-		//delete
-		//削除したい長方形の情報を入力
-		System.out.println("削除したい長方形の情報を入力してください");
-		System.out.print("width : ");
-		int w = scan.nextInt();
-		System.out.print("height : ");
-		int h = scan.nextInt();
-		System.out.print("x : ");
-		int x = scan.nextInt();
-		System.out.print("y : ");
-		int y = scan.nextInt();
-		int i = 0;
-		for(Rectangle rect : rectangle){
-		    if(rect.getW() == w && rect.getH() == h &&
-		       rect.getX() == x && rect.getY() == y){
-			rectangle.remove(i);
-			break;
-		    }else{
-		    }
-		    i++;
-		}
-	    }
+	    //delete
+	    board.delete(rectangle);
 	    break;
 	case 8:
 	    //displayBoard
-	    Board board = new Board();
 	    board.displayBoard(rectangle);
 	    break;
 	case 9:
@@ -84,5 +62,3 @@ class Command{
 	}   
     }
 }
-
-	    
